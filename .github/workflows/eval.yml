@@ -37,10 +37,10 @@ jobs:
           extra_nix_config: |
             accept-flake-config = true
 
-      - name: Eval ${{ matrix.system }} cursor
+      - name: Eval ${{ matrix.system }} code-cursor
         run: |
           set -euo pipefail
-          nix eval --raw ".#packages.${{ matrix.system }}.cursor.drvPath" \
+          nix eval --raw ".#packages.${{ matrix.system }}.code-cursor.drvPath" \
             | tee /tmp/drvPath
           test -s /tmp/drvPath
           printf '%s eval ok -> %s\n' "${{ matrix.system }}" "$(cat /tmp/drvPath)"

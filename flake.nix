@@ -22,13 +22,13 @@
     in
     {
       packages = forAllSystems (system: {
-        inherit ((pkgsFor system).callPackage ./cursor { }) cursor;
+        inherit ((pkgsFor system).callPackage ./cursor { }) code-cursor;
       });
       nixosModules.default = {
         imports = [ ./module.nix ];
         nixpkgs.overlays = [
           (final: prev: {
-            inherit (prev.callPackage ./cursor { }) cursor;
+            inherit (prev.callPackage ./cursor { code-cursor = prev.code-cursor; }) code-cursor;
           })
         ];
       };

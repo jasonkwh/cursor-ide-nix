@@ -4,12 +4,12 @@
 
 I created this repo because the Cursor version in nixpkgs is outdated, and the agent interface stopped working because that version is obsolete.
 
-This flake provides the `cursor` package.
+This flake provides the `code-cursor` package, the same attribute name as nixpkgs.
 
 It also provides a NixOS module, which allows you to install the package the usual way:
 
 ```nix
-environment.systemPackages = with pkgs; [ cursor ];
+environment.systemPackages = with pkgs; [ code-cursor ];
 ```
 
 ## Using the Cursor package in your NixOS configuration
@@ -41,6 +41,6 @@ outputs = { self, nixpkgs, cursor }: {
 };
 ```
 
-`programs.cursor.enable = true` adds `pkgs.cursor` to `environment.systemPackages`.
+`programs.cursor.enable = true` adds `pkgs.code-cursor` to `environment.systemPackages`. The program name stays `cursor`.
 
-The package is also available as `cursor.packages.${system}.cursor` for `x86_64-linux`, `aarch64-linux`, and `aarch64-darwin`.
+The package is also available as `cursor.packages.${system}.code-cursor` for `x86_64-linux`, `aarch64-linux`, and `aarch64-darwin`.

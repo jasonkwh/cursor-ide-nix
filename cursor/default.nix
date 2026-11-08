@@ -1,10 +1,11 @@
-{ callPackage }:
+{ callPackage, code-cursor }:
 
 let
   release = import ./packages/cursor.nix;
 in
 {
-  cursor = callPackage ((import ./make-cursor.nix) {
+  code-cursor = callPackage ((import ./make-cursor.nix) {
     inherit (release) pname version archives;
+    upstream = code-cursor;
   }) { };
 }

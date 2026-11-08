@@ -2,6 +2,7 @@
   pname,
   version,
   archives,
+  upstream,
 }:
 
 {
@@ -9,7 +10,6 @@
   stdenv,
   fetchurl,
   appimageTools,
-  code-cursor,
 }:
 
 let
@@ -20,7 +20,7 @@ let
 
   source = fetchurl { inherit (archive) url hash; };
 in
-code-cursor.overrideAttrs (old: {
+upstream.overrideAttrs (old: {
   inherit pname version;
 
   src =

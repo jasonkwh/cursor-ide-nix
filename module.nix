@@ -16,6 +16,6 @@ in
   config = {
     nixpkgs.config.allowUnfreePredicate = lib.mkDefault (pkg: lib.getName pkg == "cursor");
 
-    environment.systemPackages = lib.mkIf cfg.enable [ pkgs.cursor ];
+    environment.systemPackages = lib.mkIf cfg.enable [ pkgs.code-cursor ];
   };
 }
