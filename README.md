@@ -1,6 +1,7 @@
 # Cursor flake for Nix
 
 <a href="https://github.com/jasonkwh/cursor-ide-nix/actions/workflows/eval.yml"><img src="https://img.shields.io/github/actions/workflow/status/jasonkwh/cursor-ide-nix/eval.yml?label=eval" alt="eval"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
 
 I created this repo because the Cursor version in nixpkgs is outdated, and the agent interface stopped working because that version is obsolete.
 
