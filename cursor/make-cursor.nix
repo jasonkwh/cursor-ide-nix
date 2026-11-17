@@ -42,4 +42,22 @@ upstream.overrideAttrs (old: {
   meta = old.meta // {
     platforms = builtins.attrNames archives;
   };
+
+  # Redirect nixpkgs' ripgrep patch to Cursor's platform-specific binary.
+  postPatch =
+    if stdenv.hostPlatform.isLinux then
+      let
+        legacyPath = "resources/app/node_modules/@vscode/ripgrep/bin/rg";
+        ripgrepPlatform = {
+          x86_64-linux = "linux-x64";
+          aarch64-linux = "linux-arm64";
+        }.${stdenv.hostPlatform.system};
+        ripgrepPath = "resources/app/node_modules/@cursor/ripgrep-${ripgrepPlatform}/bin/rg";
+        upstreamPostPatch = old.postPatch or "";
+      in
+      assert lib.assertMsg (lib.hasInfix legacyPath upstreamPostPatch)
+        "${pname}: upstream ripgrep patch changed; review the compatibility override";
+      lib.replaceStrings [ legacyPath ] [ ripgrepPath ] upstreamPostPatch
+    else
+      old.postPatch or "";
 })
